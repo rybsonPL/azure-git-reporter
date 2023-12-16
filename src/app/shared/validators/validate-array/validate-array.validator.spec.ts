@@ -15,7 +15,7 @@ describe('validateArray', () => {
 
   describe('when control value is array', () => {
     describe('and array values are invalid', () => {
-      it('should return errors for each value', () => {
+      it('should return errors for one value', () => {
         const control = { value: [1, 10, 20] } as AbstractControl;
         const result = validator(control);
 
@@ -23,7 +23,7 @@ describe('validateArray', () => {
         expect(result).toEqual([{ min: { min: 10, actual: 1 } }]);
       });
 
-      it('should return errors for each value', () => {
+      it('should return errors for 2 values', () => {
         const control = { value: [1, 5, 20] } as AbstractControl;
         const result = validator(control);
 
