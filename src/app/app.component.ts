@@ -32,7 +32,6 @@ export class AppComponent implements OnInit {
       closable: true,
       width: 'min(60rem, 95%)',
       closeOnEscape: true,
-      modal: true,
     });
   }
 }
