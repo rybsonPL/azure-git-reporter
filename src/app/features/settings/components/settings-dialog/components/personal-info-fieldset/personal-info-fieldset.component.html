@@ -1,0 +1,22 @@
+<p-fieldset [toggleable]="true" legend="Personal info">
+  <div class="container">
+    <span class="p-input-icon-left p-float-label">
+      <i class="pi pi-user"></i>
+      <input pInputText type="text" />
+      <label for="username">Full name</label>
+    </span>
+
+    <span class="p-input-icon-left p-float-label">
+      <i class="pi pi-user"></i>
+      <input pInputText type="text" />
+      <label for="username">Manager name</label>
+    </span>
+
+    <span class="p-float-label calendar-input">
+      <p-calendar [showIcon]="true" iconDisplay="input" appendTo="body"></p-calendar>
+      <label for="username">Contract date</label>
+    </span>
+
+    <!-- <p-calendar [showIcon]="true" iconDisplay="input" appendTo="body" placeholder="Contract date"></p-calendar> -->
+  </div>
+</p-fieldset>

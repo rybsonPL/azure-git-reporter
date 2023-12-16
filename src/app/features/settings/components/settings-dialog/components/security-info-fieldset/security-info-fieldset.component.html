@@ -1,0 +1,15 @@
+<p-fieldset [toggleable]="true" legend="Security info">
+  <div class="container">
+    <span class="p-input-icon-left p-float-label">
+      <i class="pi pi-at"></i>
+      <input pInputText type="text" />
+      <label for="username">Domain e-mail</label>
+    </span>
+
+    <span class="p-input-icon-left p-float-label">
+      <i class="pi pi-lock"></i>
+      <p-password [feedback]="false" [toggleMask]="true" autocomplete="off" autocomplete="one-time-code"></p-password>
+      <label for="username">Token</label>
+    </span>
+  </div>
+</p-fieldset>

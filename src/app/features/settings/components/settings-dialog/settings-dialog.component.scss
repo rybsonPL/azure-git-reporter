@@ -1,1 +1,10 @@
-// empty
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--inline-spacing);
+}
+
+p-button {
+  margin-left: auto;
+  margin-top: var(--inline-spacing);
+}
