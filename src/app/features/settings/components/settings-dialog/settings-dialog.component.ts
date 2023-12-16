@@ -37,11 +37,14 @@ export class SettingsDialogComponent {
     }),
     repositoryInfo: this.fb.group({
       organization: this.fb.control('', [Validators.maxLength(200)]),
+      // TODO add validation - item length & email
       emails: this.fb.control<string[]>([]),
+      // TODO add validation - item length
       projects: this.fb.control<string[]>([]),
     }),
     securityInfo: this.fb.group({
-      domainEmail: this.fb.control('', [Validators.email]),
+      // TODO add validation - item length & email
+      domainEmail: this.fb.control(''),
       token: this.fb.control('111', [Validators.maxLength(200)]),
     }),
   });
