@@ -1,0 +1,13 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  background-color: var(--surface-section);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+h1 {
+  font-size: clamp(1rem, 0.8206rem + 0.7656vw, 1.5rem);
+  color: var(--blue-600);
+}
