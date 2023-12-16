@@ -1,7 +1,9 @@
-<form>
-  <app-personal-info-fieldset />
-  <app-repository-info-fieldset />
-  <app-security-info-fieldset />
+<form [formGroup]="form" (ngSubmit)="close()">
+  <app-personal-info-fieldset [form]="form.controls.personalInfo" />
+  <app-repository-info-fieldset [form]="form.controls.repositoryInfo" />
+  <app-security-info-fieldset [form]="form.controls.securityInfo" />
 
-  <p-button label="Save" (onClick)="close()" />
+  <p-button label="Save" type="submit" />
 </form>
+
+{{ form.value | json }}

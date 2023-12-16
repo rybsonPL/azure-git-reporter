@@ -7,7 +7,7 @@ export interface Settings {
   repositoryInfo: {
     organization: string;
     emails: string[];
-    projectNames: string[];
+    projects: string[];
   };
   securityInfo: {
     domainEmail: string;

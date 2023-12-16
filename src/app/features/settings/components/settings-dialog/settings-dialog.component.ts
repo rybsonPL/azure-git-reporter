@@ -1,4 +1,6 @@
+import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
@@ -14,6 +16,8 @@ import { SecurityInfoFieldsetComponent } from './components/security-info-fields
     RepositoryInfoFieldsetComponent,
     SecurityInfoFieldsetComponent,
     ButtonModule,
+    ReactiveFormsModule,
+    JsonPipe,
   ],
   templateUrl: './settings-dialog.component.html',
   styleUrl: './settings-dialog.component.scss',
@@ -21,8 +25,28 @@ import { SecurityInfoFieldsetComponent } from './components/security-info-fields
 })
 export class SettingsDialogComponent {
   private readonly dialogRef = inject(DynamicDialogRef);
+  private readonly fb = inject(NonNullableFormBuilder);
 
-  close() {
+  protected today = new Date();
+
+  protected form = this.fb.group({
+    personalInfo: this.fb.group({
+      fullName: this.fb.control('', [Validators.maxLength(200)]),
+      managerName: this.fb.control('', [Validators.maxLength(200)]),
+      contractDate: this.fb.control(this.today),
+    }),
+    repositoryInfo: this.fb.group({
+      organization: this.fb.control('', [Validators.maxLength(200)]),
+      emails: this.fb.control<string[]>([]),
+      projects: this.fb.control<string[]>([]),
+    }),
+    securityInfo: this.fb.group({
+      domainEmail: this.fb.control('', [Validators.email]),
+      token: this.fb.control('111', [Validators.maxLength(200)]),
+    }),
+  });
+
+  close(): void {
     this.dialogRef.close();
   }
 }

@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Settings } from '@features/settings';
+import { FormGroupFrom } from '@shared/types';
 import { ChipsModule } from 'primeng/chips';
 import { FieldsetModule } from 'primeng/fieldset';
 import { InputTextModule } from 'primeng/inputtext';
@@ -6,9 +9,11 @@ import { InputTextModule } from 'primeng/inputtext';
 @Component({
   selector: 'app-repository-info-fieldset',
   standalone: true,
-  imports: [FieldsetModule, InputTextModule, ChipsModule],
+  imports: [FieldsetModule, InputTextModule, ChipsModule, ReactiveFormsModule],
   templateUrl: './repository-info-fieldset.component.html',
   styleUrls: ['../fieldset.scss', './repository-info-fieldset.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RepositoryInfoFieldsetComponent {}
+export class RepositoryInfoFieldsetComponent {
+  @Input() form!: FormGroupFrom<Settings['repositoryInfo']>;
+}

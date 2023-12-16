@@ -1,15 +1,21 @@
-<p-fieldset [toggleable]="true" legend="Security info">
+<p-fieldset [toggleable]="true" [formGroup]="form" legend="Security info">
   <div class="container">
     <span class="p-input-icon-left p-float-label">
       <i class="pi pi-at"></i>
-      <input pInputText type="text" />
-      <label for="username">Domain e-mail</label>
+      <input formControlName="domainEmail" pInputText id="domainEmail" type="text" />
+      <label for="domainEmail">Domain e-mail</label>
     </span>
 
     <span class="p-input-icon-left p-float-label">
       <i class="pi pi-lock"></i>
-      <p-password [feedback]="false" [toggleMask]="true" autocomplete="off" autocomplete="one-time-code"></p-password>
-      <label for="username">Token</label>
+      <p-password
+        [feedback]="false"
+        [toggleMask]="true"
+        formControlName="token"
+        autocomplete="off"
+        autocomplete="one-time-code"
+        id="token" />
+      <label for="token">Token</label>
     </span>
   </div>
 </p-fieldset>

@@ -1,21 +1,33 @@
-<p-fieldset [toggleable]="true" legend="Repository info">
+<p-fieldset [toggleable]="true" [formGroup]="form" legend="Repository info">
   <div class="container">
     <span class="p-input-icon-left p-float-label">
       <i class="pi pi-user"></i>
-      <input pInputText type="text" />
-      <label for="username">Organization</label>
+      <input formControlName="organization" pInputText id="organization" type="text" />
+      <label for="organization">Organization</label>
     </span>
 
     <span class="p-input-icon-left p-float-label chip">
       <i class="pi pi-at"></i>
-      <p-chips [addOnBlur]="true" [max]="5" [allowDuplicate]="false" separator=";"></p-chips>
+      <p-chips
+        [addOnBlur]="true"
+        [max]="5"
+        [allowDuplicate]="false"
+        formControlName="emails"
+        separator=";"
+        id="emails" />
       <label for="username">E-mails</label>
     </span>
 
     <span class="p-input-icon-left p-float-label chip">
       <i class="pi pi-folder"></i>
-      <p-chips [addOnBlur]="true" [max]="20" [allowDuplicate]="false" separator=";"></p-chips>
-      <label for="username">Projects</label>
+      <p-chips
+        [addOnBlur]="true"
+        [max]="20"
+        [allowDuplicate]="false"
+        formControlName="projects"
+        separator=";"
+        id="projects" />
+      <label for="projects">Projects</label>
     </span>
   </div>
 </p-fieldset>
