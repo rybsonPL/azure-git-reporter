@@ -1,6 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { validateArray } from '@shared/validators';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
@@ -37,14 +38,11 @@ export class SettingsDialogComponent {
     }),
     repositoryInfo: this.fb.group({
       organization: this.fb.control('', [Validators.maxLength(200)]),
-      // TODO add validation - item length & email
-      emails: this.fb.control<string[]>([]),
-      // TODO add validation - item length
-      projects: this.fb.control<string[]>([]),
+      emails: this.fb.control<string[]>([], [validateArray([Validators.maxLength(200), Validators.email])]),
+      projects: this.fb.control<string[]>([], [validateArray([Validators.maxLength(200), Validators.email])]),
     }),
     securityInfo: this.fb.group({
-      // TODO add validation - item length & email
-      domainEmail: this.fb.control(''),
+      domainEmail: this.fb.control('', [Validators.maxLength(200), Validators.email]),
       token: this.fb.control('111', [Validators.maxLength(200)]),
     }),
   });
