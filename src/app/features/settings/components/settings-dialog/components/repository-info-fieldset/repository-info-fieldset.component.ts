@@ -16,5 +16,5 @@ import { InputTextModule } from 'primeng/inputtext';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RepositoryInfoFieldsetComponent {
-  @Input() form!: FormGroupFrom<Settings['repositoryInfo']>;
+  @Input({ required: true }) form!: FormGroupFrom<Settings['repositoryInfo']>;
 }

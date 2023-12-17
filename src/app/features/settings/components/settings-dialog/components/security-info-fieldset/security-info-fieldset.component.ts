@@ -16,5 +16,5 @@ import { PasswordModule } from 'primeng/password';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SecurityInfoFieldsetComponent {
-  @Input() form!: FormGroupFrom<Settings['securityInfo']>;
+  @Input({ required: true }) form!: FormGroupFrom<Settings['securityInfo']>;
 }
