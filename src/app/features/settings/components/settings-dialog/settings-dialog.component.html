@@ -3,7 +3,5 @@
   <app-repository-info-fieldset [form]="form.controls.repositoryInfo" />
   <app-security-info-fieldset [form]="form.controls.securityInfo" />
 
-  <p-button label="Save" type="submit" />
+  <p-button [disabled]="form.invalid || form.pristine" label="Save" type="submit" />
 </form>
-
-{{ form.controls.repositoryInfo.controls.emails.errors | json }}

@@ -1,3 +1,4 @@
+import { KeyValuePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Settings } from '@features/settings';
@@ -9,7 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 @Component({
   selector: 'app-repository-info-fieldset',
   standalone: true,
-  imports: [FieldsetModule, InputTextModule, ChipsModule, ReactiveFormsModule],
+  imports: [FieldsetModule, InputTextModule, ChipsModule, ReactiveFormsModule, KeyValuePipe],
   templateUrl: './repository-info-fieldset.component.html',
   styleUrls: ['../fieldset.scss', './repository-info-fieldset.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

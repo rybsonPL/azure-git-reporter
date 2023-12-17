@@ -1,33 +1,55 @@
 <p-fieldset [toggleable]="true" [formGroup]="form" legend="Repository info">
   <div class="container">
-    <span class="p-input-icon-left p-float-label">
-      <i class="pi pi-user"></i>
-      <input formControlName="organization" pInputText id="organization" type="text" />
-      <label for="organization">Organization</label>
-    </span>
+    <div>
+      <span class="p-input-icon-left p-float-label">
+        <i class="pi pi-user"></i>
+        <input formControlName="organization" pInputText id="organization" type="text" />
+        <label for="organization">Organization</label>
+      </span>
+      @if (form.controls.organization.hasError('maxlength')) {
+        <small class="error">Maximum length is 200</small>
+      }
+    </div>
 
-    <span class="p-input-icon-left p-float-label chip">
-      <i class="pi pi-at"></i>
-      <p-chips
-        [addOnBlur]="true"
-        [max]="5"
-        [allowDuplicate]="false"
-        formControlName="emails"
-        separator=";"
-        id="emails" />
-      <label for="username">E-mails</label>
-    </span>
+    <div>
+      <span class="p-input-icon-left p-float-label chip">
+        <i class="pi pi-at"></i>
+        <p-chips
+          [addOnBlur]="true"
+          [max]="5"
+          [allowDuplicate]="false"
+          formControlName="emails"
+          separator=";"
+          id="emails" />
+        <label for="username">E-mails</label>
+      </span>
 
-    <span class="p-input-icon-left p-float-label chip">
-      <i class="pi pi-folder"></i>
-      <p-chips
-        [addOnBlur]="true"
-        [max]="20"
-        [allowDuplicate]="false"
-        formControlName="projects"
-        separator=";"
-        id="projects" />
-      <label for="projects">Projects</label>
-    </span>
+      @for (error of form.controls.emails.errors | keyvalue; track error.key) {
+        @if (error.value?.['maxlength']) {
+          <small class="error">Maximum length is 200</small>
+        } @else if (error.value?.['email']) {
+          <small class="error">Invalid email</small>
+        }
+      }
+    </div>
+
+    <div>
+      <span class="p-input-icon-left p-float-label chip">
+        <i class="pi pi-folder"></i>
+        <p-chips
+          [addOnBlur]="true"
+          [max]="20"
+          [allowDuplicate]="false"
+          formControlName="projects"
+          separator=";"
+          id="projects" />
+        <label for="projects">Projects</label>
+      </span>
+      @for (error of form.controls.projects.errors | keyvalue; track error.key) {
+        @if (error.value?.['maxlength']) {
+          <small class="error">Maximum length is 200</small>
+        }
+      }
+    </div>
   </div>
 </p-fieldset>

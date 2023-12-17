@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { emailValidator, validateArray } from '@shared/validators';
@@ -18,7 +17,6 @@ import { SecurityInfoFieldsetComponent } from './components/security-info-fields
     SecurityInfoFieldsetComponent,
     ButtonModule,
     ReactiveFormsModule,
-    JsonPipe,
   ],
   templateUrl: './settings-dialog.component.html',
   styleUrl: './settings-dialog.component.scss',
@@ -42,8 +40,8 @@ export class SettingsDialogComponent {
       projects: this.fb.control<string[]>([], [validateArray([Validators.maxLength(200)])]),
     }),
     securityInfo: this.fb.group({
-      domainEmail: this.fb.control('', [Validators.maxLength(200), Validators.email]),
-      token: this.fb.control('111', [Validators.maxLength(200)]),
+      domainEmail: this.fb.control('', [Validators.maxLength(200), emailValidator()]),
+      token: this.fb.control('', [Validators.maxLength(200)]),
     }),
   });
 
