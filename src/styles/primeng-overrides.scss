@@ -1,0 +1,67 @@
+.p-dialog-content {
+  padding: 0 1rem 1rem;
+}
+
+.p-dialog-header {
+  padding: 1rem;
+}
+
+.p-fieldset {
+  &.p-fieldset-toggleable .p-fieldset-legend a {
+    padding: 1rem;
+  }
+
+  .p-fieldset-content {
+    padding: var(--inline-spacing);
+  }
+}
+
+.calendar-input {
+  .p-icon-wrapper {
+    top: 50%;
+    margin-top: -0.5rem;
+    left: 0.75rem;
+  }
+
+  .p-inputtext {
+    padding-right: 12px;
+    padding-left: 2.5rem;
+  }
+
+  label {
+    margin-left: 1.5rem;
+  }
+}
+
+.p-calendar,
+.p-chips,
+.p-chips-multiple-container,
+.p-password {
+  width: 100%;
+  min-width: 178px;
+}
+
+.p-chips-multiple-container {
+  padding-left: 2.5rem;
+}
+
+.p-password-input {
+  width: 100%;
+}
+
+.p-float-label {
+  .p-inputwrapper-focus ~ label,
+  .p-inputwrapper-filled ~ label,
+  input:focus ~ label,
+  input.p-filled ~ label,
+  textarea:focus ~ label,
+  textarea.p-filled ~ label {
+    left: 0;
+  }
+}
+
+.p-password {
+  .p-inputtext {
+    padding-inline: 2.5rem;
+  }
+}

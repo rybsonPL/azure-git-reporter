@@ -1,20 +1,38 @@
-<p-fieldset [toggleable]="true" legend="Personal info">
+<p-fieldset [formGroup]="form" [toggleable]="true" legend="Personal info">
   <div class="container">
-    <span class="p-input-icon-left p-float-label">
-      <i class="pi pi-user"></i>
-      <input pInputText type="text" />
-      <label for="username">Full name</label>
-    </span>
+    <div>
+      <span class="p-input-icon-left p-float-label">
+        <i class="pi pi-user"></i>
+        <input formControlName="fullName" pInputText id="fullName" type="text" />
+        <label for="fullName">Full name</label>
+      </span>
+      @if (form.controls.fullName.hasError('maxlength')) {
+        <small class="error">Maximum length is 200</small>
+      }
+    </div>
 
-    <span class="p-input-icon-left p-float-label">
-      <i class="pi pi-user"></i>
-      <input pInputText type="text" />
-      <label for="username">Manager name</label>
-    </span>
+    <div>
+      <span class="p-input-icon-left p-float-label">
+        <i class="pi pi-user"></i>
+        <input formControlName="managerName" pInputText id="managerName" type="text" />
+        <label for="managerName">Manager name</label>
+      </span>
+      @if (form.controls.managerName.hasError('maxlength')) {
+        <small class="error">Maximum length is 200</small>
+      }
+    </div>
 
-    <span class="p-float-label calendar-input">
-      <p-calendar [showIcon]="true" iconDisplay="input" appendTo="body"></p-calendar>
-      <label for="username">Contract date</label>
-    </span>
+    <div>
+      <span class="p-float-label calendar-input">
+        <p-calendar
+          [showIcon]="true"
+          [maxDate]="today"
+          formControlName="contractDate"
+          iconDisplay="input"
+          appendTo="body"
+          id="contractDate" />
+        <label for="contractDate">Contract date</label>
+      </span>
+    </div>
   </div>
 </p-fieldset>
