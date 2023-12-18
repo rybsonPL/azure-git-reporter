@@ -15,7 +15,9 @@ import { InputTextModule } from 'primeng/inputtext';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonalInfoFieldsetComponent {
-  @Input() form!: FormGroupFrom<Omit<Settings['personalInfo'], 'contractDate'> & { contractDate: Date }>;
+  @Input({ required: true }) form!: FormGroupFrom<
+    Omit<Settings['personalInfo'], 'contractDate'> & { contractDate: Date }
+  >;
 
   protected readonly today = new Date();
 }

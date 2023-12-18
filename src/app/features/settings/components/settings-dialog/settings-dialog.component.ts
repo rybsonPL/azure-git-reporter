@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Settings } from '@features/settings/models/settings.model';
 import { emailValidator, validateArray } from '@shared/validators';
 import { ButtonModule } from 'primeng/button';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { PersonalInfoFieldsetComponent } from './components/personal-info-fieldset/personal-info-fieldset.component';
 import { RepositoryInfoFieldsetComponent } from './components/repository-info-fieldset/repository-info-fieldset.component';
@@ -22,13 +23,13 @@ import { SecurityInfoFieldsetComponent } from './components/security-info-fields
   styleUrl: './settings-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SettingsDialogComponent {
+export class SettingsDialogComponent implements OnInit {
   private readonly dialogRef = inject(DynamicDialogRef);
+  private readonly dialogConfig = inject(DynamicDialogConfig);
   private readonly fb = inject(NonNullableFormBuilder);
 
-  protected today = new Date();
-
-  protected form = this.fb.group({
+  protected readonly today = new Date();
+  protected readonly form = this.fb.group({
     personalInfo: this.fb.group({
       fullName: this.fb.control('', [Validators.maxLength(200)]),
       managerName: this.fb.control('', [Validators.maxLength(200)]),
@@ -45,7 +46,35 @@ export class SettingsDialogComponent {
     }),
   });
 
-  close(): void {
-    this.dialogRef.close();
+  ngOnInit(): void {
+    this.initFormValue(this.dialogConfig.data.settings);
+  }
+
+  private initFormValue(settings: Settings | null): void {
+    if (!settings) return;
+
+    const mappedSettings = {
+      ...settings,
+      personalInfo: {
+        ...settings.personalInfo,
+        contractDate: new Date(settings.personalInfo.contractDate),
+      },
+    };
+
+    this.form.setValue(mappedSettings);
+  }
+
+  protected close(): void {
+    const settingsValue = this.form.getRawValue();
+
+    const mappedSettingsValue: Settings = {
+      ...settingsValue,
+      personalInfo: {
+        ...settingsValue.personalInfo,
+        contractDate: settingsValue.personalInfo.contractDate.toISOString(),
+      },
+    };
+
+    this.dialogRef.close(mappedSettingsValue);
   }
 }
