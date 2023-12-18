@@ -12,7 +12,6 @@ import { PasswordModule } from 'primeng/password';
   standalone: true,
   imports: [FieldsetModule, InputTextModule, PasswordModule, ReactiveFormsModule, JsonPipe],
   templateUrl: './security-info-fieldset.component.html',
-  styleUrls: ['../fieldset.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SecurityInfoFieldsetComponent {

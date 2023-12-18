@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SettingsService } from '@features/settings';
-import { SettingsDialogComponent } from '@features/settings/components/settings-dialog/settings-dialog.component';
+import { GenerateReportCardComponent } from '@features/generate-report';
+import { SettingsDialogComponent, SettingsService } from '@features/settings';
 import { HeaderComponent } from '@shell/components';
 import { DialogService } from 'primeng/dynamicdialog';
 import { tap } from 'rxjs';
@@ -12,7 +11,7 @@ import { primengConfig } from '@core/prime-ng.config';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent],
+  imports: [RouterOutlet, HeaderComponent, GenerateReportCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [DialogService],

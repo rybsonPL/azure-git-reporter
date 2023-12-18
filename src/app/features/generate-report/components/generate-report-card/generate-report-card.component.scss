@@ -1,0 +1,36 @@
+@use '../../../../../styles/variables.scss' as *;
+
+:host {
+  width: min(50rem, 90%);
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 0.9fr 2fr;
+  background-color: var(--surface-section);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: $box-shadow;
+}
+
+.img {
+  background: url('../../../../../assets/images/generate-report.webp') center center/cover no-repeat
+    var(--surface-section);
+}
+
+.form {
+  padding: $double-spacing;
+  display: flex;
+  flex-direction: column;
+  gap: $double-spacing;
+
+  &__submit-button {
+    margin-left: auto;
+    margin-top: 2rem;
+  }
+}
+
+@media (width <= 760px) {
+  :host {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr;
+  }
+}

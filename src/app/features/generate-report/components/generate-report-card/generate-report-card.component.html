@@ -1,0 +1,22 @@
+<div class="img"></div>
+
+<form class="form">
+  <div class="input-container">
+    <span class="p-float-label calendar-input">
+      <p-calendar [showIcon]="true" iconDisplay="input" appendTo="body" selectionMode="range" id="reportDates" />
+      <label for="reportDates">Dates from - to</label>
+    </span>
+
+    <span class="p-float-label calendar-input">
+      <p-calendar [showIcon]="true" iconDisplay="input" appendTo="body" id="generationDate" />
+      <label for="generationDate">Generation date</label>
+    </span>
+  </div>
+
+  <div class="checkbox-input">
+    <p-checkbox [value]="true" id="skipMerge"></p-checkbox>
+    <label for="skipMerge">Skip merges to master</label>
+  </div>
+
+  <p-button icon="pi pi-download" label="Generate report" class="form__submit-button" />
+</form>

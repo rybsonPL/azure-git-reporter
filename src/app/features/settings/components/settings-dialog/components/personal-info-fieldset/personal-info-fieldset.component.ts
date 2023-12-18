@@ -11,7 +11,6 @@ import { InputTextModule } from 'primeng/inputtext';
   standalone: true,
   imports: [FieldsetModule, InputTextModule, CalendarModule, ReactiveFormsModule],
   templateUrl: './personal-info-fieldset.component.html',
-  styleUrls: ['../fieldset.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonalInfoFieldsetComponent {

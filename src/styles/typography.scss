@@ -1,0 +1,13 @@
+p,
+h2,
+label {
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: clamp(1rem, 0.8206rem + 0.7656vw, 1.5rem);
+}
+
+h2 {
+  font-size: clamp(1rem, 0.8923rem + 0.4593vw, 1.3rem);
+}
