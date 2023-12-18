@@ -2,19 +2,15 @@
 
 <form class="form">
   <div class="input-container">
-    <div>
-      <span class="p-float-label calendar-input">
-        <p-calendar [showIcon]="true" iconDisplay="input" appendTo="body" selectionMode="range" id="reportDates" />
-        <label for="reportDates">Dates from - to</label>
-      </span>
-    </div>
+    <span class="p-float-label calendar-input">
+      <p-calendar [showIcon]="true" iconDisplay="input" appendTo="body" selectionMode="range" id="reportDates" />
+      <label for="reportDates">Dates from - to</label>
+    </span>
 
-    <div>
-      <span class="p-float-label calendar-input">
-        <p-calendar [showIcon]="true" iconDisplay="input" appendTo="body" id="generationDate" />
-        <label for="generationDate">Generation date</label>
-      </span>
-    </div>
+    <span class="p-float-label calendar-input">
+      <p-calendar [showIcon]="true" iconDisplay="input" appendTo="body" id="generationDate" />
+      <label for="generationDate">Generation date</label>
+    </span>
   </div>
 
   <div class="checkbox-input">
@@ -24,14 +20,3 @@
 
   <p-button icon="pi pi-download" label="Generate report" class="form__submit-button" />
 </form>
-
-<!-- <p-calendar
-[readonlyInput]="true"
-[dateFormat]="dateFormat"
-[firstDayOfWeek]="firstDayOfWeek"
-[maxDate]="lastDayOfMonth"
-appErrorMessage
-formControlName="reportDates"
-appendTo="body"
-selectionMode="range" />
-</label> -->
