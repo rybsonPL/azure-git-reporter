@@ -12,7 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
   standalone: true,
   imports: [FieldsetModule, InputTextModule, ChipsModule, ReactiveFormsModule, KeyValuePipe],
   templateUrl: './repository-info-fieldset.component.html',
-  styleUrls: ['../fieldset.scss', './repository-info-fieldset.component.scss'],
+  styleUrl: './repository-info-fieldset.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RepositoryInfoFieldsetComponent {
