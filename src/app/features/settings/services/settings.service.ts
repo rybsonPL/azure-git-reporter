@@ -1,4 +1,4 @@
-import { Injectable, effect, signal } from '@angular/core';
+import { Injectable, Signal, effect, signal } from '@angular/core';
 
 import { Settings } from '../models/settings.model';
 
@@ -7,10 +7,18 @@ import { Settings } from '../models/settings.model';
 })
 export class SettingsService {
   private readonly SETTINGS_KEY = 'azure-git-reporter-settings';
-  readonly settings = signal<Settings | null>(this.getSettings());
+  private readonly settings = signal<Settings | null>(this.getInitialSettings());
 
   constructor() {
     effect(() => this.saveSettings(this.settings()));
+  }
+
+  public getSettings(): Signal<Settings | null> {
+    return this.settings.asReadonly();
+  }
+
+  public updateSettings(settings: Settings): void {
+    return this.settings.set(settings);
   }
 
   private saveSettings(settings: Settings | null): void {
@@ -19,7 +27,7 @@ export class SettingsService {
     }
   }
 
-  private getSettings(): Settings | null {
+  private getInitialSettings(): Settings | null {
     const settings = localStorage.getItem(this.SETTINGS_KEY);
 
     return settings ? (JSON.parse(settings) as Settings) : null;
