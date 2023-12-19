@@ -1,5 +1,7 @@
 <app-header (openSettings)="openSettings()" />
 
 <main>
-  <app-generate-report-card></app-generate-report-card>
+  <app-generate-report-card
+    [contractDate]="settings()?.personalInfo?.contractDate!"
+    (generateForm)="generateForm($event)" />
 </main>

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { GenerateReportCardComponent } from '@features/generate-report';
+import { GenerateReportCardComponent, GenerateReportFormValue } from '@features/generate-report';
 import { SettingsDialogComponent, SettingsService } from '@features/settings';
 import { HeaderComponent } from '@shell/components';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -20,11 +20,13 @@ export class AppComponent {
   private readonly dialogService = inject(DialogService);
   private readonly settingsService = inject(SettingsService);
 
+  protected settings = this.settingsService.getSettings();
+
   constructor() {
     primengConfig();
   }
 
-  openSettings() {
+  openSettings(): void {
     this.dialogService
       .open(SettingsDialogComponent, {
         header: 'Settings',
@@ -32,16 +34,20 @@ export class AppComponent {
         width: 'min(60rem, 95%)',
         closeOnEscape: true,
         data: {
-          settings: this.settingsService.settings(),
+          settings: this.settings(),
         },
       })
       .onClose.pipe(
         tap(settings => {
           if (settings) {
-            this.settingsService.settings.set(settings);
+            this.settingsService.updateSettings(settings);
           }
         })
       )
       .subscribe();
+  }
+
+  generateForm(formValue: GenerateReportFormValue): void {
+    console.log(formValue);
   }
 }
