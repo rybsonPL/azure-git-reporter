@@ -8,7 +8,7 @@ export interface CommitDto {
   author: AuthorDto;
   committer: CommitterDto;
   comment: string;
-  commentTruncated: boolean;
+  commentTruncated?: boolean;
   changeCounts: ChangeCountsDto;
   url: string;
   remoteUrl: string;
