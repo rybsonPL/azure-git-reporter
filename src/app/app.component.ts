@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GenerateReportCardComponent, GenerateReportFormValue } from '@features/generate-report';
+import { GenerateReportService } from '@features/generate-report/services/generate-report.service';
 import { SettingsDialogComponent, SettingsService } from '@features/settings';
 import { HeaderComponent } from '@shell/components';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -19,6 +20,7 @@ import { primengConfig } from '@core/prime-ng.config';
 export class AppComponent {
   private readonly dialogService = inject(DialogService);
   private readonly settingsService = inject(SettingsService);
+  private readonly generateReportService = inject(GenerateReportService);
 
   protected settings = this.settingsService.getSettings();
 
@@ -48,6 +50,6 @@ export class AppComponent {
   }
 
   generateForm(formValue: GenerateReportFormValue): void {
-    console.log(formValue);
+    this.generateReportService.generate(formValue);
   }
 }

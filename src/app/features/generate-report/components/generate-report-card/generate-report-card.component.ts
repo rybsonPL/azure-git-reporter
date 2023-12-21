@@ -29,7 +29,7 @@ export class GenerateReportCardComponent {
   protected readonly form = this.fb.group({
     reportDates: this.fb.control<Date[]>([startOfMonth(new Date()), this.lastDayOfMonth]),
     generationDate: this.fb.control(new Date()),
-    skipMerges: this.fb.control<boolean[]>([]),
+    skipMerges: this.fb.control<boolean[]>([true]),
   });
 
   protected onSubmit(): void {

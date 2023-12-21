@@ -1,7 +1,8 @@
-import { TestBed } from '@angular/core/testing';
-import { ApiService } from './api-service.service';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+
+import { ApiService } from './api-service.service';
 
 const mocks = {
   organization: 'mock_organization',
@@ -50,7 +51,7 @@ describe('ApiService', () => {
 
       httpTestingController.expectOne({
         method: 'GET',
-        url: `https://dev.azure.com/mock_organization/mock_project/_apis/git/repositories/mock_repository_id/commits?searchCriteria.user=mock_user&searchCriteria.fromDate=2023-01-01T00:00:00.000Z&searchCriteria.toDate=2023-01-31T00:00:00.000Z`,
+        url: `https://dev.azure.com/mock_organization/mock_project/_apis/git/repositories/mock_repository_id/commits?searchCriteria.user=mock_user&searchCriteria.fromDate=2023-01-01T00:00:00.000Z&searchCriteria.toDate=2023-01-31T00:00:00.000Z&searchCriteria.$top=1000`,
       });
     });
 
