@@ -28,17 +28,6 @@
     </span>
   </div>
 
-  <div class="form__checkboxes">
-    <div class="checkbox-input">
-      <p-checkbox [value]="true" formControlName="skipMergesToMaster" inputId="skipMergesToMaster"></p-checkbox>
-      <label for="skipMergesToMaster">Skip merges to master</label>
-    </div>
-    <div class="checkbox-input">
-      <p-checkbox [value]="true" formControlName="skipMergesFromMaster" inputId="skipMergesFromMaster"></p-checkbox>
-      <label for="skipMergesFromMaster">Skip merges from master</label>
-    </div>
-  </div>
-
   <p-button
     [disabled]="form.invalid"
     icon="pi pi-download"

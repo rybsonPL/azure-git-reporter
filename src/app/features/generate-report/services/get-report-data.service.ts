@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
+import { ChangesDto } from '@backend/models';
 import { ApiService } from '@backend/service';
 import { SettingsService } from '@features/settings';
 import { formatISO } from 'date-fns';
-import { EMPTY, catchError, filter, from, mergeMap, toArray } from 'rxjs';
+import { EMPTY, Observable, catchError, filter, from, mergeMap, switchMap, toArray } from 'rxjs';
 
 import { GenerateReportFormValue } from '../models/generate-report-form-value.model';
 
@@ -12,20 +13,21 @@ export class GetReportDataService {
   private readonly settingsService = inject(SettingsService);
   private readonly repositorySettings = this.settingsService.getSettings();
 
-  getData({ reportDates: [fromDate, toDate] }: GenerateReportFormValue) {
+  getData({ reportDates: [fromDate, toDate] }: GenerateReportFormValue): Observable<ChangesDto[]> {
     const emails = this.repositorySettings()!.repositoryInfo.emails;
     const projects = this.repositorySettings()!.repositoryInfo.projects;
     const organization = this.repositorySettings()!.repositoryInfo.organization;
 
     return from(emails).pipe(
-      mergeMap(email => {
+      switchMap(email => {
         return from(projects).pipe(
           mergeMap(project => {
             return this.apiService.getRepositories({ organization, project }).pipe(
-              mergeMap(repositories => {
+              catchError(() => EMPTY),
+              switchMap(repositories => {
                 return from(repositories.value).pipe(
-                  mergeMap(repository =>
-                    this.apiService
+                  mergeMap(repository => {
+                    return this.apiService
                       .getCommits({
                         organization,
                         project,
@@ -36,11 +38,25 @@ export class GetReportDataService {
                       })
                       .pipe(
                         catchError(() => EMPTY),
-                        filter(commit => commit.count !== 0)
-                      )
-                  )
+                        filter(commits => commits.count !== 0),
+                        switchMap(commits => {
+                          return from(commits.value).pipe(
+                            mergeMap(commit => {
+                              return this.apiService
+                                .getChanges({
+                                  organization,
+                                  project,
+                                  commitId: commit.commitId,
+                                  repositoryId: repository.id,
+                                })
+                                .pipe(catchError(() => EMPTY));
+                            }, 10)
+                          );
+                        })
+                      );
+                  }, 10)
                 );
-              }, 10)
+              })
             );
           }, 10)
         );

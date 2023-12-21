@@ -22,17 +22,6 @@
   flex-direction: column;
   gap: $double-spacing;
 
-  &__checkboxes {
-    display: flex;
-    gap: $double-spacing;
-    flex-wrap: wrap;
-
-    & > * {
-      min-width: 216px;
-      flex: 1;
-    }
-  }
-
   &__submit-button {
     margin-left: auto;
     margin-top: 2rem;

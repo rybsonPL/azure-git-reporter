@@ -29,8 +29,6 @@ export class GenerateReportCardComponent {
   protected readonly form = this.fb.group({
     reportDates: this.fb.control<Date[]>([startOfMonth(new Date()), this.lastDayOfMonth]),
     generationDate: this.fb.control(new Date()),
-    skipMergesToMaster: this.fb.control<boolean[]>([true]),
-    skipMergesFromMaster: this.fb.control<boolean[]>([true]),
   });
 
   protected onSubmit(): void {
@@ -39,8 +37,6 @@ export class GenerateReportCardComponent {
     const generateReportFormValue: GenerateReportFormValue = {
       reportDates: [startOfDay(formValue.reportDates[0]), endOfDay(formValue.reportDates[1])] as [Date, Date],
       generationDate: formValue.generationDate,
-      skipMergesToMaster: !!formValue.skipMergesToMaster[0],
-      skipMergesFromMaster: !!formValue.skipMergesFromMaster[0],
     };
 
     this.generateForm.next(generateReportFormValue);
