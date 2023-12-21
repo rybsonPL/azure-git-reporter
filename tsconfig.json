@@ -7,7 +7,8 @@
       "@features/*": ["app/features/*"],
       "@shell/*": ["app/shell/*"],
       "@core/*": ["app/core/*"],
-      "@shared/*": ["app/shared/*"]
+      "@shared/*": ["app/shared/*"],
+      "@backend/*": ["app/backend/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
