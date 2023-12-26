@@ -3,7 +3,7 @@ import { ChangesDto } from '@backend/models';
 import { ApiService } from '@backend/service';
 import { SettingsService } from '@features/settings';
 import { formatISO } from 'date-fns';
-import { EMPTY, Observable, catchError, filter, from, mergeMap, switchMap, toArray } from 'rxjs';
+import { Observable, filter, from, mergeMap, switchMap, toArray } from 'rxjs';
 
 import { GenerateReportFormValue } from '../../models/generate-report-form-value.model';
 
@@ -23,7 +23,6 @@ export class GetReportDataService {
         return from(projects).pipe(
           mergeMap(project => {
             return this.apiService.getRepositories({ organization, project }).pipe(
-              catchError(() => EMPTY),
               switchMap(repositories => {
                 return from(repositories.value).pipe(
                   mergeMap(repository => {
@@ -37,19 +36,16 @@ export class GetReportDataService {
                         toDate: formatISO(toDate),
                       })
                       .pipe(
-                        catchError(() => EMPTY),
                         filter(commits => commits.count !== 0),
                         switchMap(commits => {
                           return from(commits.value).pipe(
                             mergeMap(commit => {
-                              return this.apiService
-                                .getChanges({
-                                  organization,
-                                  project,
-                                  commitId: commit.commitId,
-                                  repositoryId: repository.id,
-                                })
-                                .pipe(catchError(() => EMPTY));
+                              return this.apiService.getChanges({
+                                organization,
+                                project,
+                                commitId: commit.commitId,
+                                repositoryId: repository.id,
+                              });
                             }, 10)
                           );
                         })

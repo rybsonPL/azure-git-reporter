@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Settings } from '@features/settings/models/settings.model';
@@ -18,6 +19,7 @@ import { SecurityInfoFieldsetComponent } from './components/security-info-fields
     SecurityInfoFieldsetComponent,
     ButtonModule,
     ReactiveFormsModule,
+    JsonPipe,
   ],
   templateUrl: './settings-dialog.component.html',
   styleUrl: './settings-dialog.component.scss',
@@ -33,7 +35,7 @@ export class SettingsDialogComponent implements OnInit {
     personalInfo: this.fb.group({
       fullName: this.fb.control('', [Validators.maxLength(200)]),
       managerName: this.fb.control('', [Validators.maxLength(200)]),
-      contractDate: this.fb.control(this.today),
+      contractDate: this.fb.control<Date | null>(null),
     }),
     repositoryInfo: this.fb.group({
       organization: this.fb.control('', [Validators.maxLength(200)]),
@@ -57,7 +59,7 @@ export class SettingsDialogComponent implements OnInit {
       ...settings,
       personalInfo: {
         ...settings.personalInfo,
-        contractDate: new Date(settings.personalInfo.contractDate),
+        contractDate: settings.personalInfo.contractDate ? new Date(settings.personalInfo.contractDate) : null,
       },
     };
 
@@ -71,7 +73,7 @@ export class SettingsDialogComponent implements OnInit {
       ...settingsValue,
       personalInfo: {
         ...settingsValue.personalInfo,
-        contractDate: settingsValue.personalInfo.contractDate.toISOString(),
+        contractDate: settingsValue.personalInfo.contractDate?.toISOString() || '',
       },
     };
 
