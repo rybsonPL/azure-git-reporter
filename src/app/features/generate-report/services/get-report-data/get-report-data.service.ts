@@ -5,7 +5,7 @@ import { SettingsService } from '@features/settings';
 import { formatISO } from 'date-fns';
 import { EMPTY, Observable, catchError, filter, from, mergeMap, switchMap, toArray } from 'rxjs';
 
-import { GenerateReportFormValue } from '../models/generate-report-form-value.model';
+import { GenerateReportFormValue } from '../../models/generate-report-form-value.model';
 
 @Injectable({ providedIn: 'root' })
 export class GetReportDataService {

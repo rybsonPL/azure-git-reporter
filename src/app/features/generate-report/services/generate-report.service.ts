@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 
 import { GenerateReportFormValue } from '../models/generate-report-form-value.model';
-import { GetReportDataService } from './get-report-data.service';
+import { GetReportDataService } from './get-report-data/get-report-data.service';
 
 @Injectable({ providedIn: 'root' })
 export class GenerateReportService {
