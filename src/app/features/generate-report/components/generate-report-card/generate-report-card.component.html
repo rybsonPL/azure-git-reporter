@@ -20,17 +20,13 @@
       <p-calendar
         [showIcon]="true"
         [readonlyInput]="true"
+        [maxDate]="lastDayOfMonth"
         formControlName="generationDate"
         iconDisplay="input"
         appendTo="body"
         id="generationDate" />
       <label for="generationDate">Generation date</label>
     </span>
-  </div>
-
-  <div class="checkbox-input">
-    <p-checkbox [value]="true" formControlName="skipMerges" inputId="skipMerges"></p-checkbox>
-    <label for="skipMerges">Skip merges to master</label>
   </div>
 
   <p-button

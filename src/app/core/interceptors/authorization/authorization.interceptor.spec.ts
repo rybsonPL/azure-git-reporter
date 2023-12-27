@@ -1,8 +1,7 @@
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { SettingsService } from '@features/settings';
+import { SettingsService, settingsServiceMock } from '@features/settings';
 
 import { authorizationInterceptor } from './authorization.interceptor';
 
@@ -16,16 +15,7 @@ describe('authorizationInterceptor', () => {
         provideHttpClientTesting(),
         {
           provide: SettingsService,
-          useValue: {
-            getSettings() {
-              return signal({
-                securityInfo: {
-                  domainEmail: 'test_user_name',
-                  token: 'test_token',
-                },
-              });
-            },
-          },
+          useValue: settingsServiceMock,
         },
       ],
     });

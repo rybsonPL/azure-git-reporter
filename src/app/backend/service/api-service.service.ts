@@ -14,9 +14,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  readonly http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
-  readonly baseUrl = 'https://dev.azure.com';
+  private readonly baseUrl = 'https://dev.azure.com';
 
   getRepositories({ organization, project }: GetRepositoriesPayload): Observable<RepositoriesDto> {
     return this.http.get<RepositoriesDto>(`${this.baseUrl}/${organization}/${project}/_apis/git/repositories`);
@@ -37,6 +37,7 @@ export class ApiService {
           'searchCriteria.user': user,
           'searchCriteria.fromDate': fromDate,
           'searchCriteria.toDate': toDate,
+          'searchCriteria.$top': 1000,
         },
       }
     );

@@ -1,5 +1,6 @@
 export interface ChangesDto {
   changes: ChangeDto[];
+  changeCounts: { [changeType: string]: number };
 }
 
 export interface ChangeDto {
@@ -8,8 +9,7 @@ export interface ChangeDto {
 }
 
 export interface ItemDto {
-  gitObjectType: string;
   path: string;
   url: string;
-  isFolder: boolean;
+  isFolder?: boolean;
 }
