@@ -25,6 +25,7 @@ export class AppComponent {
   private readonly generateReportService = inject(GenerateReportService);
 
   protected settings = this.settingsService.getSettings();
+  protected isSettingsFilled = this.settingsService.isSettingsFilled();
 
   constructor() {
     primengConfig();
