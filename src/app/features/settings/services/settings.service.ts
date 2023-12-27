@@ -1,4 +1,5 @@
-import { Injectable, Signal, effect, signal } from '@angular/core';
+import { Injectable, Signal, computed, effect, signal } from '@angular/core';
+import { allPropertiesTruthy } from '@shared/utils';
 
 import { Settings } from '../models/settings.model';
 
@@ -19,6 +20,10 @@ export class SettingsService {
 
   public updateSettings(settings: Settings): void {
     return this.settings.set(settings);
+  }
+
+  public isSettingsFilled(): Signal<boolean> {
+    return computed(() => allPropertiesTruthy(this.settings()));
   }
 
   private saveSettings(settings: Settings | null): void {

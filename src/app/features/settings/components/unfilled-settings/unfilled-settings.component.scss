@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  padding-inline: 1rem;
+}
+
+h2 {
+  text-wrap: pretty;
+  text-align: center;
+}
+
+.pi {
+  font-size: clamp(3rem, 2.2823rem + 3.0622vw, 5rem);
+  color: var(--blue-600);
+}

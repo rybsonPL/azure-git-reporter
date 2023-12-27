@@ -76,3 +76,7 @@
 .p-button {
   gap: var(--inline-spacing);
 }
+
+.p-button-rounded {
+  gap: unset !important;
+}

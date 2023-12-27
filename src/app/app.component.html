@@ -1,9 +1,13 @@
 <app-header (openSettings)="openSettings()" />
 
 <main>
-  <app-generate-report-card
-    [contractDate]="settings()?.personalInfo?.contractDate!"
-    (generateForm)="generateForm($event)" />
+  @if (isSettingsFilled()) {
+    <app-generate-report-card
+      [contractDate]="settings()?.personalInfo?.contractDate!"
+      (generateForm)="generateForm($event)" />
+  } @else {
+    <app-unfilled-settings />
+  }
 </main>
 
 <p-toast />

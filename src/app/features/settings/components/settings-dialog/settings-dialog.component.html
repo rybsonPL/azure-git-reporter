@@ -3,5 +3,5 @@
   <app-repository-info-fieldset [form]="form.controls.repositoryInfo" />
   <app-security-info-fieldset [form]="form.controls.securityInfo" />
 
-  <p-button [disabled]="form.invalid || form.pristine" label="Save" type="submit" />
+  <p-button [disabled]="form.invalid" label="Save" type="submit" />
 </form>
