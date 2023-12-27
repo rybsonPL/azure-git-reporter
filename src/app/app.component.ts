@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { GenerateReportCardComponent, GenerateReportFormValue } from '@features/generate-report';
 import { GenerateReportService } from '@features/generate-report/services/generate-report.service';
 import { SettingsDialogComponent, SettingsService } from '@features/settings';
+import { UnfilledSettingsComponent } from '@features/settings/components/unfilled-settings/unfilled-settings.component';
 import { HeaderComponent } from '@shell/components';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
@@ -13,7 +14,7 @@ import { primengConfig } from '@core/prime-ng.config';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, GenerateReportCardComponent, ToastModule],
+  imports: [RouterOutlet, HeaderComponent, GenerateReportCardComponent, ToastModule, UnfilledSettingsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
