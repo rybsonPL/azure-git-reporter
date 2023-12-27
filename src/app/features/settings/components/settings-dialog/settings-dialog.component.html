@@ -2,6 +2,6 @@
   <app-personal-info-fieldset [form]="form.controls.personalInfo" />
   <app-repository-info-fieldset [form]="form.controls.repositoryInfo" />
   <app-security-info-fieldset [form]="form.controls.securityInfo" />
-  {{ form.controls.personalInfo.controls.contractDate.value | json }}
+
   <p-button [disabled]="form.invalid || form.pristine" label="Save" type="submit" />
 </form>

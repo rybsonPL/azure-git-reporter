@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Settings } from '@features/settings/models/settings.model';
@@ -19,7 +18,6 @@ import { SecurityInfoFieldsetComponent } from './components/security-info-fields
     SecurityInfoFieldsetComponent,
     ButtonModule,
     ReactiveFormsModule,
-    JsonPipe,
   ],
   templateUrl: './settings-dialog.component.html',
   styleUrl: './settings-dialog.component.scss',

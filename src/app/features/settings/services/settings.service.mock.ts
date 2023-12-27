@@ -6,7 +6,7 @@ export const settingsServiceMock = {
   getSettings() {
     const settings: Settings = {
       personalInfo: {
-        contractDate: '12.12.2023',
+        contractDate: '2023-12-27T17:46:54Z',
         fullName: 'Full Name',
         managerName: 'Manager Name',
       },
