@@ -14,7 +14,7 @@ export function handleErrorsInterceptor(
   }
 
   return next(request).pipe(
-    timeout(5000),
+    timeout(10000),
     catchError((error: HttpErrorResponse) => {
       if (error.status === 0) {
         messageService.add({ summary: 'Connection lost', detail: 'Try again', severity: 'error' });
