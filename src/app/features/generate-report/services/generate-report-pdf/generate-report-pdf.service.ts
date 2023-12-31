@@ -6,7 +6,7 @@ import { LATO_FONT } from 'assets/fonts';
 import jsPDF from 'jspdf';
 import autoTable, { RowInput } from 'jspdf-autotable';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class GenerateReportPdfService {
   private readonly settingsService = inject(SettingsService);
 
@@ -15,21 +15,21 @@ export class GenerateReportPdfService {
   private readonly datePipe = new DatePipe('pl-PL');
 
   public generate({ changes, generationDate }: ReportData) {
-    const file = new jsPDF({ orientation: 'l', unit: 'px' });
+    const file = new jsPDF({ orientation: 'l', unit: 'px', compress: true });
     this.setupFont(file);
 
     autoTable(file, {
       showHead: 'firstPage',
       rowPageBreak: 'avoid',
       styles: {
-        lineColor: '#777',
+        lineColor: '#757575',
         lineWidth: this.lineWidth,
         fontSize: 9,
         font: 'Lato-Regular',
         fontStyle: 'normal',
+        textColor: '#000',
       },
       headStyles: {
-        textColor: '#000',
         fillColor: '#b2b2b2',
         overflow: 'linebreak',
         cellWidth: 'wrap',
@@ -58,7 +58,6 @@ export class GenerateReportPdfService {
       foot: this.getFooter(generationDate),
       showFoot: 'lastPage',
       footStyles: {
-        textColor: '#000',
         fillColor: '#fff',
       },
     });
@@ -139,21 +138,21 @@ export class GenerateReportPdfService {
           content: 'Podpis pracodawcy, data:',
           styles: {
             minCellHeight: 15,
-            lineWidth: { ...this.lineWidth, right: 0 },
+            lineWidth: { ...this.lineWidth, right: 0, bottom: 0 },
           },
         },
         {
           colSpan: 2,
           content: 'Podpis pracownika, data:',
           styles: {
-            lineWidth: { ...this.lineWidth, left: 0 },
+            lineWidth: { ...this.lineWidth, left: 0, bottom: 0 },
           },
         },
       ],
       [
         {
           colSpan: 4,
-          styles: { minCellHeight: 50, lineWidth: { ...this.lineWidth, top: 0, right: 0 } },
+          styles: { minCellHeight: 50, lineWidth: { ...this.lineWidth, right: 0, top: 0 } },
           content: '',
         },
         // TODO add signature
@@ -161,7 +160,7 @@ export class GenerateReportPdfService {
           colSpan: 2,
           content: `${this.datePipe.transform(generationDate, 'shortDate')}`,
           styles: {
-            lineWidth: { ...this.lineWidth, top: 0, left: 0 },
+            lineWidth: { ...this.lineWidth, left: 0, top: 0 },
           },
         },
       ],

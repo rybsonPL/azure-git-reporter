@@ -7,7 +7,7 @@ import { Observable, combineLatest, filter, from, map, mergeMap, of, switchMap, 
 
 import { GenerateReportFormValue } from '../../models/generate-report-form-value.model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class GetReportDataService {
   private readonly apiService = inject(ApiService);
   private readonly settingsService = inject(SettingsService);

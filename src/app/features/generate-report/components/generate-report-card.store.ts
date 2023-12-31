@@ -16,6 +16,6 @@ export class GenerateReportCardStore {
     this.getReportDataService
       .getData(formValue)
       .pipe(tap(reportData => this.generateReportPdfService.generate(reportData)))
-      .subscribe(console.log);
+      .subscribe();
   }
 }
