@@ -1,12 +1,13 @@
-<div class="img"></div>
+<section class="card">
+  <div class="card__img"></div>
 
-@if (isSettingsFilled()) {
-  <app-generate-report-form
-    [contractDate]="settings()?.personalInfo?.contractDate!"
-    (generateData)="generateData($event)" />
-} @else {
-  <div>
-    <span class="pi pi-cog"></span>
-    <h2>To generate a report, first fill in all the settings</h2>
+  <div class="card__content">
+    @if (isSettingsFilled()) {
+      <app-generate-report-form
+        [contractDate]="settings()?.personalInfo?.contractDate!"
+        (generateData)="generateData($event)" />
+    } @else {
+      <h2 class="unfilled-settings">To generate a report, first fill in all the settings</h2>
+    }
   </div>
-}
+</section>

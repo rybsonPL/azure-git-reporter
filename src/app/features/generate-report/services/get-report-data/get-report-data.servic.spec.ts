@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 
 import { GetReportDataService } from './get-report-data.service';
 
-fdescribe('GetReportDataService', () => {
+describe('GetReportDataService', () => {
   let getReportDataService: GetReportDataService, apiService: ApiService;
 
   beforeEach(() => {
@@ -59,7 +59,7 @@ fdescribe('GetReportDataService', () => {
       expect(changesSpy).toHaveBeenCalledTimes(30);
     });
 
-    fit('should return ResultData', () => {
+    it('should return ResultData', () => {
       const expectedChanges = settingsServiceMock
         .getSettings()()
         .repositoryInfo.projects.map(project => ({ ...changesMock, project }));

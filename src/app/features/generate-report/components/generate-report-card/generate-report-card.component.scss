@@ -1,42 +1,39 @@
-@use '../../../../../styles/variables.scss' as *;
+@use 'variables' as *;
 
 :host {
-  width: min(50rem, 90%);
   min-height: 12rem;
+  min-width: 17rem;
+  display: flex;
+  container-type: inline-size;
+}
+
+.card {
+  width: 100%;
   display: grid;
   grid-template-columns: 0.9fr 2fr;
   background-color: var(--surface-section);
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: $box-shadow;
+
+  &__img {
+    background: url('../../../../../assets/images/generate-report.webp') center center/cover no-repeat
+      var(--surface-section);
+  }
+
+  &__content {
+    display: grid;
+    padding: $double-spacing;
+
+    .unfilled-settings {
+      place-self: center;
+    }
+  }
 }
 
-.img {
-  background: url('../../../../../assets/images/generate-report.webp') center center/cover no-repeat
-    var(--surface-section);
-}
-
-@media (width <= 760px) {
-  :host {
+@container (width <= 684px) {
+  .card {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr;
   }
 }
-
-// :host {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 2rem;
-//   align-items: center;
-//   padding-inline: 1rem;
-// }
-
-// h2 {
-//   text-wrap: pretty;
-//   text-align: center;
-// }
-
-// .pi {
-//   font-size: clamp(3rem, 2.2823rem + 3.0622vw, 5rem);
-//   color: var(--blue-600);
-// }
