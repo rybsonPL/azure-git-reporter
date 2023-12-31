@@ -5,9 +5,9 @@ import { emailValidator, validateArray } from '@shared/validators';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
-import { PersonalInfoFieldsetComponent } from './components/personal-info-fieldset/personal-info-fieldset.component';
-import { RepositoryInfoFieldsetComponent } from './components/repository-info-fieldset/repository-info-fieldset.component';
-import { SecurityInfoFieldsetComponent } from './components/security-info-fieldset/security-info-fieldset.component';
+import { PersonalInfoFieldsetComponent } from './personal-info-fieldset/personal-info-fieldset.component';
+import { RepositoryInfoFieldsetComponent } from './repository-info-fieldset/repository-info-fieldset.component';
+import { SecurityInfoFieldsetComponent } from './security-info-fieldset/security-info-fieldset.component';
 
 @Component({
   selector: 'app-settings-dialog',
