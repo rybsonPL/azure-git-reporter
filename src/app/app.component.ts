@@ -1,3 +1,4 @@
+import '@angular/common/locales/global/pl';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { GenerateReportCardComponent } from '@features/generate-report';
 import { HeaderComponent } from '@shell/components';
