@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Injectable, inject } from '@angular/core';
 import { ReportData } from '@features/generate-report/models/report-data.model';
 import { SettingsService } from '@features/settings';
+import { LATO_FONT } from 'assets/fonts';
 import jsPDF from 'jspdf';
 import autoTable, { RowInput } from 'jspdf-autotable';
 
@@ -15,6 +16,7 @@ export class GenerateReportPdfService {
 
   public generate({ changes, generationDate }: ReportData) {
     const file = new jsPDF({ orientation: 'l', unit: 'px' });
+    this.setupFont(file);
 
     autoTable(file, {
       showHead: 'firstPage',
@@ -23,7 +25,7 @@ export class GenerateReportPdfService {
         lineColor: '#777',
         lineWidth: this.lineWidth,
         fontSize: 9,
-        // font: 'Roboto-Medium',
+        font: 'Lato-Regular',
         fontStyle: 'normal',
       },
       headStyles: {
@@ -62,6 +64,11 @@ export class GenerateReportPdfService {
     });
 
     file.save(this.getFileName());
+  }
+
+  private setupFont(file: jsPDF): void {
+    file.addFileToVFS('Lato-Regular.ttf', LATO_FONT);
+    file.addFont('Lato-Regular.ttf', 'Lato-Regular', 'normal');
   }
 
   private getHeaders(generationDate: Date): RowInput[] {
@@ -146,7 +153,7 @@ export class GenerateReportPdfService {
       [
         {
           colSpan: 4,
-          styles: { minCellHeight: 50, lineWidth: { ...this.lineWidth, top: 0 } },
+          styles: { minCellHeight: 50, lineWidth: { ...this.lineWidth, top: 0, right: 0 } },
           content: '',
         },
         // TODO add signature
