@@ -28,6 +28,7 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -45,7 +46,10 @@
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles/"]
+            }
           },
           "configurations": {
             "production": {
@@ -102,6 +106,9 @@
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles/"]
+            },
             "scripts": [],
             "karmaConfig": "karma.conf.js"
           }

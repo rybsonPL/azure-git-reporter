@@ -1,8 +1,8 @@
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { changesMock, commitsMock, repositoriesMock } from '@backend/mocks';
-import { ChangesDto } from '@backend/models';
 import { ApiService } from '@backend/service';
+import { ReportData } from '@features/generate-report/models/report-data.model';
 import { SettingsService, settingsServiceMock } from '@features/settings';
 import { of } from 'rxjs';
 
@@ -29,7 +29,8 @@ describe('GetReportDataService', () => {
   });
 
   describe('getData()', () => {
-    let repositoriesSpy: jasmine.Spy, commitsSpy: jasmine.Spy, changesSpy: jasmine.Spy, result: ChangesDto[];
+    let repositoriesSpy: jasmine.Spy, commitsSpy: jasmine.Spy, changesSpy: jasmine.Spy, result: ReportData;
+    const generationDate = new Date('2023-12-26T17:11:06.181Z');
 
     beforeEach(done => {
       repositoriesSpy = spyOn(apiService, 'getRepositories').and.returnValue(of(repositoriesMock));
@@ -39,7 +40,7 @@ describe('GetReportDataService', () => {
       getReportDataService
         .getData({
           reportDates: [new Date('2023-12-01T00:00:00'), new Date('2023-12-31T23:59:59')],
-          generationDate: new Date('2023-12-26T17:11:06.181Z'),
+          generationDate,
         })
         .subscribe(changesDto => (result = changesDto));
 
@@ -58,8 +59,15 @@ describe('GetReportDataService', () => {
       expect(changesSpy).toHaveBeenCalledTimes(30);
     });
 
-    it('should return array of ChangesDto', () => {
-      expect(result).toEqual(Array(30).fill(changesMock));
+    it('should return ResultData', () => {
+      const expectedChanges = settingsServiceMock
+        .getSettings()()
+        .repositoryInfo.projects.map(project => ({ ...changesMock, project }));
+
+      expect(result).toEqual({
+        changes: [...Array(15).fill(expectedChanges[0]), ...Array(15).fill(expectedChanges[1])],
+        generationDate,
+      });
     });
   });
 });

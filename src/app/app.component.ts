@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { GenerateReportCardComponent, GenerateReportFormValue } from '@features/generate-report';
-import { GenerateReportService } from '@features/generate-report/services/generate-report.service';
+import { GenerateReportCardComponent } from '@features/generate-report';
 import { SettingsDialogComponent, SettingsService } from '@features/settings';
-import { UnfilledSettingsComponent } from '@features/settings/components/unfilled-settings/unfilled-settings.component';
 import { HeaderComponent } from '@shell/components';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
@@ -14,7 +12,7 @@ import { primengConfig } from '@core/prime-ng.config';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, GenerateReportCardComponent, ToastModule, UnfilledSettingsComponent],
+  imports: [RouterOutlet, HeaderComponent, GenerateReportCardComponent, ToastModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,10 +20,6 @@ import { primengConfig } from '@core/prime-ng.config';
 export class AppComponent {
   private readonly dialogService = inject(DialogService);
   private readonly settingsService = inject(SettingsService);
-  private readonly generateReportService = inject(GenerateReportService);
-
-  protected settings = this.settingsService.getSettings();
-  protected isSettingsFilled = this.settingsService.isSettingsFilled();
 
   constructor() {
     primengConfig();
@@ -39,7 +33,7 @@ export class AppComponent {
         width: 'min(60rem, 95%)',
         closeOnEscape: true,
         data: {
-          settings: this.settings(),
+          settings: this.settingsService.getSettings()(),
         },
       })
       .onClose.pipe(
@@ -50,9 +44,5 @@ export class AppComponent {
         })
       )
       .subscribe();
-  }
-
-  generateForm(formValue: GenerateReportFormValue): void {
-    this.generateReportService.generate(formValue);
   }
 }

@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { ChangesDto } from '@backend/models';
 import { ApiService } from '@backend/service';
+import { ReportData } from '@features/generate-report/models/report-data.model';
 import { SettingsService } from '@features/settings';
 import { formatISO } from 'date-fns';
-import { Observable, filter, from, mergeMap, switchMap, toArray } from 'rxjs';
+import { Observable, filter, from, map, mergeMap, switchMap, toArray } from 'rxjs';
 
 import { GenerateReportFormValue } from '../../models/generate-report-form-value.model';
 
@@ -13,7 +13,7 @@ export class GetReportDataService {
   private readonly settingsService = inject(SettingsService);
   private readonly repositorySettings = this.settingsService.getSettings();
 
-  getData({ reportDates: [fromDate, toDate] }: GenerateReportFormValue): Observable<ChangesDto[]> {
+  getData({ reportDates: [fromDate, toDate], generationDate }: GenerateReportFormValue): Observable<ReportData> {
     const emails = this.repositorySettings()!.repositoryInfo.emails;
     const projects = this.repositorySettings()!.repositoryInfo.projects;
     const organization = this.repositorySettings()!.repositoryInfo.organization;
@@ -52,12 +52,14 @@ export class GetReportDataService {
                       );
                   }, 10)
                 );
-              })
+              }),
+              map(changes => ({ ...changes, project }))
             );
           }, 10)
         );
       }),
-      toArray()
+      toArray(),
+      map(changes => ({ changes, generationDate }))
     );
   }
 }
