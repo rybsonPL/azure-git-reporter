@@ -1,1 +1,1 @@
-export * from './header-navigation.service';
+export * from './header-navigation/header-navigation.service';

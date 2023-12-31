@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { changesMock, commitsMock, repositoriesMock } from '@backend/mocks';
 import { ApiService } from '@backend/service';
 import { ReportData } from '@features/generate-report/models/report-data.model';
-import { SettingsService, settingsServiceMock } from '@features/settings';
+import { provideSettingsServiceMock, settingsMock } from '@features/settings';
 import { of } from 'rxjs';
 
 import { GetReportDataService } from './get-report-data.service';
@@ -13,15 +13,7 @@ describe('GetReportDataService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        provideHttpClient(),
-        GetReportDataService,
-        ApiService,
-        {
-          provide: SettingsService,
-          useValue: settingsServiceMock,
-        },
-      ],
+      providers: [provideHttpClient(), GetReportDataService, ApiService, provideSettingsServiceMock()],
     });
 
     getReportDataService = TestBed.inject(GetReportDataService);
@@ -60,9 +52,7 @@ describe('GetReportDataService', () => {
     });
 
     it('should return ResultData', () => {
-      const expectedChanges = settingsServiceMock
-        .getSettings()()
-        .repositoryInfo.projects.map(project => ({ ...changesMock, project }));
+      const expectedChanges = settingsMock.repositoryInfo.projects.map(project => ({ ...changesMock, project }));
 
       expect(result).toEqual({
         changes: [...Array(15).fill(expectedChanges[0]), ...Array(15).fill(expectedChanges[1])],

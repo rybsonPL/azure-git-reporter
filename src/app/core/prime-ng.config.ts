@@ -10,3 +10,5 @@ export function primengConfig() {
     dateFormat: 'dd.mm.yy',
   });
 }
+
+export const defaultDialogWidth = 'min(60rem, 95%)';

@@ -1,7 +1,7 @@
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { SettingsService, settingsServiceMock } from '@features/settings';
+import { provideSettingsServiceMock } from '@features/settings';
 
 import { authorizationInterceptor } from './authorization.interceptor';
 
@@ -13,10 +13,7 @@ describe('authorizationInterceptor', () => {
       providers: [
         provideHttpClient(withInterceptors([authorizationInterceptor])),
         provideHttpClientTesting(),
-        {
-          provide: SettingsService,
-          useValue: settingsServiceMock,
-        },
+        provideSettingsServiceMock(),
       ],
     });
 

@@ -3,6 +3,8 @@ import { SettingsDialogComponent, SettingsService } from '@features/settings';
 import { DialogService } from 'primeng/dynamicdialog';
 import { tap } from 'rxjs';
 
+import { defaultDialogWidth } from '@core/prime-ng.config';
+
 @Injectable({ providedIn: 'root' })
 export class HeaderNavigationService {
   private readonly dialogService = inject(DialogService);
@@ -13,7 +15,7 @@ export class HeaderNavigationService {
       .open(SettingsDialogComponent, {
         header: 'Settings',
         closable: true,
-        width: 'min(60rem, 95%)',
+        width: defaultDialogWidth,
         closeOnEscape: true,
         data: {
           settings: this.settingsService.getSettings()(),
