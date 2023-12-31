@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { GenerateReportFormValue } from '@features/generate-report';
-import { GenerateReportService } from '@features/generate-report/services/generate-report.service';
+import { GenerateReportPdfService } from '@features/generate-report/services/generate-report-pdf/generate-report-pdf.service';
 import { SettingsService } from '@features/settings';
 
-import { GenerateReportFormComponent } from './components/generate-report-form/generate-report-form.component';
+import { GenerateReportFormComponent } from './generate-report-form/generate-report-form.component';
 
 @Component({
   selector: 'app-generate-report-card',
@@ -15,12 +15,12 @@ import { GenerateReportFormComponent } from './components/generate-report-form/g
 })
 export class GenerateReportCardComponent {
   private readonly settingsService = inject(SettingsService);
-  private readonly generateReportService = inject(GenerateReportService);
+  private readonly generateReportPdfService = inject(GenerateReportPdfService);
 
   protected readonly settings = this.settingsService.getSettings();
   protected readonly isSettingsFilled = this.settingsService.isSettingsFilled();
 
   protected generateData(formValue: GenerateReportFormValue): void {
-    this.generateReportService.generate(formValue);
+    this.generateReportPdfService.generate(formValue);
   }
 }
