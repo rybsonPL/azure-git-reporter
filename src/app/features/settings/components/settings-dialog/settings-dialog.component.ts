@@ -57,7 +57,7 @@ export class SettingsDialogComponent implements OnInit {
       ...settings,
       personalInfo: {
         ...settings.personalInfo,
-        contractDate: settings.personalInfo.contractDate ? new Date(settings.personalInfo.contractDate) : null,
+        contractDate: settings.personalInfo?.contractDate ? new Date(settings.personalInfo.contractDate) : null,
       },
     };
 

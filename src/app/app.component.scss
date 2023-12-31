@@ -2,6 +2,7 @@
   height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr;
+  align-items: flex-start;
 }
 
 main {
@@ -9,7 +10,6 @@ main {
   justify-content: center;
 }
 
-app-generate-report-card,
-app-unfilled-settings {
+app-generate-report-card {
   margin-top: 5%;
 }

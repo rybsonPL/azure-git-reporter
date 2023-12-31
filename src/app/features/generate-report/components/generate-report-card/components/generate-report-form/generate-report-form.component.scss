@@ -1,0 +1,13 @@
+@use '../../../../../../../styles/variables.scss' as *;
+
+form {
+  padding: $double-spacing;
+  display: flex;
+  flex-direction: column;
+  gap: $double-spacing;
+
+  p-button[type='submit'] {
+    margin-left: auto;
+    margin-top: 2rem;
+  }
+}

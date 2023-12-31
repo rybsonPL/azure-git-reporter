@@ -1,38 +1,12 @@
 <div class="img"></div>
 
-<form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
-  <div class="input-container">
-    <span class="p-float-label calendar-input">
-      <p-calendar
-        [showIcon]="true"
-        [readonlyInput]="true"
-        [maxDate]="lastDayOfMonth"
-        [minDate]="contractDate"
-        formControlName="reportDates"
-        iconDisplay="input"
-        appendTo="body"
-        selectionMode="range"
-        id="reportDates" />
-      <label for="reportDates">Dates from - to</label>
-    </span>
-
-    <span class="p-float-label calendar-input">
-      <p-calendar
-        [showIcon]="true"
-        [readonlyInput]="true"
-        [maxDate]="lastDayOfMonth"
-        formControlName="generationDate"
-        iconDisplay="input"
-        appendTo="body"
-        id="generationDate" />
-      <label for="generationDate">Generation date</label>
-    </span>
+@if (isSettingsFilled()) {
+  <app-generate-report-form
+    [contractDate]="settings()?.personalInfo?.contractDate!"
+    (generateData)="generateData($event)" />
+} @else {
+  <div>
+    <span class="pi pi-cog"></span>
+    <h2>To generate a report, first fill in all the settings</h2>
   </div>
-
-  <p-button
-    [disabled]="form.invalid"
-    icon="pi pi-download"
-    label="Generate report"
-    class="form__submit-button"
-    type="submit" />
-</form>
+}

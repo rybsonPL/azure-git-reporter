@@ -1,0 +1,31 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="input-container">
+    <span class="p-float-label calendar-input">
+      <p-calendar
+        [showIcon]="true"
+        [readonlyInput]="true"
+        [maxDate]="lastDayOfMonth"
+        [minDate]="contractDate"
+        formControlName="reportDates"
+        iconDisplay="input"
+        appendTo="body"
+        selectionMode="range"
+        id="reportDates" />
+      <label for="reportDates">Dates from - to</label>
+    </span>
+
+    <span class="p-float-label calendar-input">
+      <p-calendar
+        [showIcon]="true"
+        [readonlyInput]="true"
+        [maxDate]="lastDayOfMonth"
+        formControlName="generationDate"
+        iconDisplay="input"
+        appendTo="body"
+        id="generationDate" />
+      <label for="generationDate">Generation date</label>
+    </span>
+  </div>
+
+  <p-button [disabled]="form.invalid" icon="pi pi-download" label="Generate report" type="submit" />
+</form>
