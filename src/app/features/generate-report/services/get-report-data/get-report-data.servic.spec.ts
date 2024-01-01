@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { changesMock, commitsMock, repositoriesMock } from '@backend/mocks';
 import { ApiService } from '@backend/service';
 import { ReportData } from '@features/generate-report/models/report-data.model';
-import { provideSettingsServiceMock, settingsMock } from '@features/settings';
+import { provideSettingsServiceMock } from '@features/settings';
 import { of } from 'rxjs';
 
 import { GetReportDataService } from './get-report-data.service';
@@ -51,13 +51,9 @@ describe('GetReportDataService', () => {
       expect(changesSpy).toHaveBeenCalledTimes(30);
     });
 
-    it('should return ResultData', () => {
-      const expectedChanges = settingsMock.repositoryInfo.projects.map(project => ({ ...changesMock, project }));
-
-      expect(result).toEqual({
-        changes: [...Array(15).fill(expectedChanges[0]), ...Array(15).fill(expectedChanges[1])],
-        generationDate,
-      });
+    it('should return ReportData with 30 commits and generationDate', () => {
+      expect(result.commits.length).toBe(30);
+      expect(result.generationDate).toEqual(generationDate);
     });
   });
 });

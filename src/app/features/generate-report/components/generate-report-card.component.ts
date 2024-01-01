@@ -21,7 +21,8 @@ export class GenerateReportCardComponent {
   private readonly generateReportCardStore = inject(GenerateReportCardStore);
 
   protected readonly settings = this.settingsService.getSettings();
-  protected readonly isSettingsFilled = this.settingsService.isSettingsFilled();
+  protected readonly isSettingsFilled = this.settingsService.isSettingsFilled;
+  protected readonly viewModel = this.generateReportCardStore.viewModel;
 
   protected generateData(formValue: GenerateReportFormValue): void {
     this.generateReportCardStore.generateFile(formValue);

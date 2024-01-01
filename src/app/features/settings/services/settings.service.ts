@@ -10,6 +10,8 @@ export class SettingsService {
   private readonly SETTINGS_KEY = 'azure-git-reporter-settings';
   private readonly settings = signal<Settings | null>(this.getInitialSettings());
 
+  public isSettingsFilled = computed(() => allPropertiesTruthy(this.settings()));
+
   constructor() {
     effect(() => this.saveSettings(this.settings()));
   }
@@ -20,10 +22,6 @@ export class SettingsService {
 
   public updateSettings(settings: Settings): void {
     return this.settings.set(settings);
-  }
-
-  public isSettingsFilled(): Signal<boolean> {
-    return computed(() => allPropertiesTruthy(this.settings()));
   }
 
   private saveSettings(settings: Settings | null): void {

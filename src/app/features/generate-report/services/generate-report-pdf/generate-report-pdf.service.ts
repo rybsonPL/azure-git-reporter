@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Injectable, inject } from '@angular/core';
-import { ReportData } from '@features/generate-report/models/report-data.model';
+import { ReportPdfRow } from '@features/generate-report/models/report-pdf-row.model';
 import { SettingsService } from '@features/settings';
 import { LATO_FONT } from 'assets/fonts';
 import jsPDF from 'jspdf';
@@ -14,7 +14,7 @@ export class GenerateReportPdfService {
   private readonly lineWidth = { right: 0.1, left: 0.1, bottom: 0.1, top: 0.1 };
   private readonly datePipe = new DatePipe('pl-PL');
 
-  public generate({ changes, generationDate }: ReportData) {
+  public generate({ reportRows, generationDate }: { reportRows: ReportPdfRow[]; generationDate: Date }) {
     const file = new jsPDF({ orientation: 'l', unit: 'px', compress: true });
     this.setupFont(file);
 
@@ -54,7 +54,7 @@ export class GenerateReportPdfService {
       },
       margin: 10,
       head: this.getHeaders(generationDate),
-      body: this.getBody(changes),
+      body: this.getBody(reportRows),
       foot: this.getFooter(generationDate),
       showFoot: 'lastPage',
       footStyles: {
@@ -99,18 +99,15 @@ export class GenerateReportPdfService {
     ];
   }
 
-  private getBody(changes: ReportData['changes']): RowInput[] {
-    return changes
-      .flatMap(({ project, changes, commitDate }) => changes.flatMap(change => ({ ...change, project, commitDate })))
-      .sort((a, b) => a.commitDate.getTime() - b.commitDate.getTime())
-      .map(change => [
-        change.project,
-        'programowanie',
-        this.mapChangeType(change.changeType),
-        change.item.path,
-        this.datePipe.transform(change.commitDate, 'short'),
-        change.item.url,
-      ]);
+  private getBody(reportRows: ReportPdfRow[]): RowInput[] {
+    return reportRows.map(row => [
+      row.project,
+      'programowanie',
+      this.mapChangeType(row.changeType),
+      row.item.path,
+      this.datePipe.transform(row.commitDate, 'short'),
+      row.item.url,
+    ]);
   }
 
   private mapChangeType(changeType: string): string {

@@ -56,13 +56,13 @@ export class GetReportDataService {
                   }, 10)
                 );
               }),
-              map(([changes, commitDate]) => ({ ...changes, project, commitDate }))
+              map(([{ changes }, commitDate]) => ({ project, commitDate, changes }))
             );
           }, 10)
         );
       }),
       toArray(),
-      map(changes => ({ changes, generationDate }))
+      map(commits => ({ commits, generationDate }))
     );
   }
 }
