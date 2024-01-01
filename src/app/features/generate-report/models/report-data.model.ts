@@ -1,6 +1,10 @@
-import { ChangesDto } from '@backend/models';
+import { ChangeDto } from '@backend/models';
 
 export interface ReportData {
-  changes: (ChangesDto & { project: string })[];
+  commits: {
+    project: string;
+    commitDate: Date;
+    changes: ChangeDto[];
+  }[];
   generationDate: Date;
 }

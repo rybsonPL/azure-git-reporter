@@ -3,11 +3,11 @@ import { ApiService } from '@backend/service';
 import { ReportData } from '@features/generate-report/models/report-data.model';
 import { SettingsService } from '@features/settings';
 import { formatISO } from 'date-fns';
-import { Observable, filter, from, map, mergeMap, switchMap, toArray } from 'rxjs';
+import { Observable, combineLatest, filter, from, map, mergeMap, of, switchMap, toArray } from 'rxjs';
 
 import { GenerateReportFormValue } from '../../models/generate-report-form-value.model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class GetReportDataService {
   private readonly apiService = inject(ApiService);
   private readonly settingsService = inject(SettingsService);
@@ -40,12 +40,15 @@ export class GetReportDataService {
                         switchMap(commits => {
                           return from(commits.value).pipe(
                             mergeMap(commit => {
-                              return this.apiService.getChanges({
-                                organization,
-                                project,
-                                commitId: commit.commitId,
-                                repositoryId: repository.id,
-                              });
+                              return combineLatest([
+                                this.apiService.getChanges({
+                                  organization,
+                                  project,
+                                  commitId: commit.commitId,
+                                  repositoryId: repository.id,
+                                }),
+                                of(new Date(commit.author.date)),
+                              ]);
                             }, 10)
                           );
                         })
@@ -53,13 +56,13 @@ export class GetReportDataService {
                   }, 10)
                 );
               }),
-              map(changes => ({ ...changes, project }))
+              map(([{ changes }, commitDate]) => ({ project, commitDate, changes }))
             );
           }, 10)
         );
       }),
       toArray(),
-      map(changes => ({ changes, generationDate }))
+      map(commits => ({ commits, generationDate }))
     );
   }
 }

@@ -21,6 +21,7 @@ export class GenerateReportFormComponent {
     transform: (value: string) => parseISO(value),
   })
   contractDate!: Date;
+  @Input({ required: true }) loading = false;
 
   @Output() generateData = new EventEmitter<GenerateReportFormValue>();
 
