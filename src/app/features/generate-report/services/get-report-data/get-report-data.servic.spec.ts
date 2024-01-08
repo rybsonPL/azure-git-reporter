@@ -2,7 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { changesMock, commitsMock, repositoriesMock } from '@backend/mocks';
 import { ApiService } from '@backend/service';
-import { ReportData } from '@features/generate-report/models/report-data.model';
+import { ReportData } from '@features/generate-report/models';
 import { provideSettingsServiceMock } from '@features/settings';
 import { of } from 'rxjs';
 

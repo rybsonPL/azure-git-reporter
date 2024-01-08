@@ -2,11 +2,8 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { CallState } from '@shared/types';
 import { tap } from 'rxjs';
 
-import { GenerateReportFormValue } from '../models/generate-report-form-value.model';
-import { ReportData } from '../models/report-data.model';
-import { ReportPdfRow } from '../models/report-pdf-row.model';
-import { GenerateReportPdfService } from '../services/generate-report-pdf/generate-report-pdf.service';
-import { GetReportDataService } from '../services/get-report-data/get-report-data.service';
+import { GenerateReportFormValue, ReportData, ReportPdfRow } from '../models';
+import { GenerateReportPdfService, GetReportDataService } from '../services';
 
 interface GenerateReportCardState {
   callState: CallState;

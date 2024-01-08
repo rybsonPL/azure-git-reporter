@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Settings } from '@features/settings/models/settings.model';
 import { emailValidator, validateArray } from '@shared/validators';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
+import { Settings } from '../models';
 import { PersonalInfoFieldsetComponent } from './personal-info-fieldset/personal-info-fieldset.component';
 import { RepositoryInfoFieldsetComponent } from './repository-info-fieldset/repository-info-fieldset.component';
 import { SecurityInfoFieldsetComponent } from './security-info-fieldset/security-info-fieldset.component';

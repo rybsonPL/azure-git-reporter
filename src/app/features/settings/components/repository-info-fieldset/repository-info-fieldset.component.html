@@ -23,13 +23,10 @@
           id="emails" />
         <label for="username">E-mails</label>
       </span>
-
-      @for (error of form.controls.emails.errors | keyvalue; track error.key) {
-        @if (error.value?.['maxlength']) {
-          <small class="error">Maximum length is 200</small>
-        } @else if (error.value?.['email']) {
-          <small class="error">Invalid email</small>
-        }
+      @if (form.controls.emails.errors | containsError: 'maxlength') {
+        <small class="error">Maximum length is 200</small>
+      } @else if (form.controls.emails.errors | containsError: 'email') {
+        <small class="error">Invalid email</small>
       }
     </div>
 
@@ -45,10 +42,8 @@
           id="projects" />
         <label for="projects">Projects</label>
       </span>
-      @for (error of form.controls.projects.errors | keyvalue; track error.key) {
-        @if (error.value?.['maxlength']) {
-          <small class="error">Maximum length is 200</small>
-        }
+      @if (form.controls.projects.errors | containsError: 'maxlength') {
+        <small class="error">Maximum length is 200</small>
       }
     </div>
   </div>

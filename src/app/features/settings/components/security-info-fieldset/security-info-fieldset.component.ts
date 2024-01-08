@@ -1,7 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Settings } from '@features/settings/models/settings.model';
+import { Settings } from '@features/settings/models';
 import { FormGroupFrom } from '@shared/types';
 import { FieldsetModule } from 'primeng/fieldset';
 import { InputTextModule } from 'primeng/inputtext';

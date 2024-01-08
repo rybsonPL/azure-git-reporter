@@ -12,6 +12,9 @@
         selectionMode="range"
         id="reportDates" />
       <label for="reportDates">Dates from - to</label>
+      @if (form.controls.reportDates.errors | containsError: 'falsyValue') {
+        <small class="error">Two dates are required</small>
+      }
     </span>
 
     <span class="p-float-label calendar-input">

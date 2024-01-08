@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Injectable, inject } from '@angular/core';
-import { ReportPdfRow } from '@features/generate-report/models/report-pdf-row.model';
+import { ReportPdfRow } from '@features/generate-report/models';
 import { SettingsService } from '@features/settings';
 import { LATO_FONT } from 'assets/fonts';
 import jsPDF from 'jspdf';
@@ -91,7 +91,7 @@ export class GenerateReportPdfService {
       ],
       [
         'Projekt',
-        'Rodzaj dzialalnosci twórczej',
+        'Rodzaj dzialalności twórczej',
         'Rodzaj utworu',
         'Nazwa utworu',
         'Data powstania utworu',

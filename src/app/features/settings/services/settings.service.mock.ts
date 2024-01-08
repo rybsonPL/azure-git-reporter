@@ -1,6 +1,6 @@
 import { makeEnvironmentProviders, signal } from '@angular/core';
 
-import { Settings } from '../models/settings.model';
+import { Settings } from '../models';
 import { SettingsService } from './settings.service';
 
 export const settingsMock: Settings = {

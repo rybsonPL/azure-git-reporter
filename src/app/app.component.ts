@@ -5,7 +5,7 @@ import { HeaderComponent } from '@shell/components';
 import { HeaderNavigationService } from '@shell/services';
 import { ToastModule } from 'primeng/toast';
 
-import { primengConfig } from '@core/prime-ng.config';
+import { primengConfig } from '@core/config';
 
 @Component({
   selector: 'app-root',

@@ -1,7 +1,7 @@
 import { Injectable, Signal, computed, effect, signal } from '@angular/core';
 import { allPropertiesTruthy } from '@shared/utils';
 
-import { Settings } from '../models/settings.model';
+import { Settings } from '../models';
 
 @Injectable({
   providedIn: 'root',
