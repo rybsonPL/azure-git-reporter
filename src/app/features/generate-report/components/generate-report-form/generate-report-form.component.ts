@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { GenerateReportFormValue } from '@features/generate-report/models/generate-report-form-value.model';
+import { ContainsErrorPipe } from '@shared/pipes';
 import { requiredTruthy, validateArray } from '@shared/validators';
 import { endOfDay, lastDayOfMonth, parseISO, startOfDay, startOfMonth } from 'date-fns';
 import { ButtonModule } from 'primeng/button';
@@ -10,7 +10,7 @@ import { CalendarModule } from 'primeng/calendar';
 @Component({
   selector: 'app-generate-report-form',
   standalone: true,
-  imports: [ButtonModule, CalendarModule, ReactiveFormsModule, CommonModule],
+  imports: [ButtonModule, CalendarModule, ReactiveFormsModule, ContainsErrorPipe],
   templateUrl: './generate-report-form.component.html',
   styleUrl: './generate-report-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
