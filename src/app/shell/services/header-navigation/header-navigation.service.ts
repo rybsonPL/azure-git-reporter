@@ -3,7 +3,7 @@ import { SettingsDialogComponent, SettingsService } from '@features/settings';
 import { DialogService } from 'primeng/dynamicdialog';
 import { tap } from 'rxjs';
 
-import { defaultDialogWidth } from '@core/prime-ng.config';
+import { defaultDialogWidth } from '@core/config/prime-ng.config';
 
 @Injectable({ providedIn: 'root' })
 export class HeaderNavigationService {

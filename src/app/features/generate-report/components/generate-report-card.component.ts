@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { GenerateReportFormValue } from '@features/generate-report';
 import { SettingsService } from '@features/settings';
 
-import { GenerateReportPdfService } from '../services/generate-report-pdf/generate-report-pdf.service';
-import { GetReportDataService } from '../services/get-report-data/get-report-data.service';
+import { GenerateReportPdfService, GetReportDataService } from '../services';
 import { GenerateReportCardStore } from './generate-report-card.store';
 import { GenerateReportFormComponent } from './generate-report-form/generate-report-form.component';
 

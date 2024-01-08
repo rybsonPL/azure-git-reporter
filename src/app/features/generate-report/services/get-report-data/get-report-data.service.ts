@@ -1,11 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { ApiService } from '@backend/service';
+import { GenerateReportFormValue } from '@features/generate-report/models';
 import { ReportData } from '@features/generate-report/models/report-data.model';
 import { SettingsService } from '@features/settings';
 import { formatISO } from 'date-fns';
 import { Observable, combineLatest, filter, from, map, mergeMap, of, switchMap, toArray } from 'rxjs';
-
-import { GenerateReportFormValue } from '../../models/generate-report-form-value.model';
 
 @Injectable()
 export class GetReportDataService {
