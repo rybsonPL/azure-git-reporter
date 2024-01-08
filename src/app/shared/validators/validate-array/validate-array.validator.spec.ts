@@ -9,7 +9,7 @@ describe('validateArray', () => {
     it('should throw an error', () => {
       const control = { value: 'not an array array' } as AbstractControl;
 
-      expect(() => validator(control)).toThrowError('Value is not an array.');
+      expect(() => validator(control)).toThrowError('Value is not an array');
     });
   });
 

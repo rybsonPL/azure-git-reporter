@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators
 export function validateArray(validators: ValidatorFn[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (!Array.isArray(control.value)) {
-      throw new Error('Value is not an array.');
+      throw new Error('Value is not an array');
     }
 
     return control.value

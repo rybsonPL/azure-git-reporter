@@ -1,1 +1,1 @@
-export * from './all-properties-truthy.util';
+export * from './all-properties-truthy/all-properties-truthy.util';
