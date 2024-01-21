@@ -19,8 +19,6 @@ function onReady() {
       slashes: true,
     })
   );
-
-  win.webContents.openDevTools();
 }
 
 app.on('ready', onReady);
