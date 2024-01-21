@@ -10,8 +10,7 @@ import autoTable, { RowInput } from 'jspdf-autotable';
 export class GenerateReportPdfService {
   private readonly settingsService = inject(SettingsService);
 
-  private readonly settings = this.settingsService.getSettings();
-  private readonly personalInfoSettings = this.settings()!.personalInfo;
+  private readonly personalInfoSettings = this.settingsService.personalInfoSettings;
   private readonly lineWidth = { right: 0.1, left: 0.1, bottom: 0.1, top: 0.1 };
   private readonly datePipe = new DatePipe('pl-PL');
 
@@ -73,16 +72,16 @@ export class GenerateReportPdfService {
 
   private getHeaders(generationDate: Date): RowInput[] {
     return [
-      [{ content: `Pracownik: ${this.personalInfoSettings.fullName}`, colSpan: 6 }],
+      [{ content: `Pracownik: ${this.personalInfoSettings()!.fullName}`, colSpan: 6 }],
       [
         {
           content:
-            `Przełożony akceptujący rejestr utworów: ${this.personalInfoSettings.managerName}` +
+            `Przełożony akceptujący rejestr utworów: ${this.personalInfoSettings()!.managerName}` +
             '\n' +
             `Data sporządzenia: ${this.datePipe.transform(generationDate, 'shortDate')}` +
             '\n' +
             `Kwota wynagrodzenia za przeniesienie majątkowych praw autorskich do utworów zgodnie z umową o pracę z dnia: ${this.datePipe.transform(
-              this.personalInfoSettings.contractDate,
+              this.personalInfoSettings()!.contractDate,
               'shortDate'
             )}`,
           colSpan: 6,
@@ -166,7 +165,7 @@ export class GenerateReportPdfService {
 
   private getFileName(): string {
     const date = new Date();
-    const name = this.personalInfoSettings.fullName.split(' ').join('_');
+    const name = this.personalInfoSettings()!.fullName.split(' ').join('_');
 
     return `${date.getFullYear()}.${date.getMonth() + 1}_${name}.pdf`;
   }
