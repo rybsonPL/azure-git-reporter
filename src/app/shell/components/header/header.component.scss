@@ -9,6 +9,16 @@ header {
   box-shadow: $box-shadow;
 }
 
-h1 {
-  color: var(--blue-600);
+.heading {
+  display: flex;
+  align-items: center;
+  gap: var(--inline-spacing);
+
+  h1 {
+    color: var(--blue-600);
+  }
+
+  img {
+    width: 32px;
+  }
 }
