@@ -1,0 +1,22 @@
+{
+  "appId": "com.rybson.azure-reporter",
+  "productName": "Azure Reporter",
+  "copyright": "rybson",
+  "directories": {
+    "app": ".",
+    "output": "releases",
+    "buildResources": "build-res"
+  },
+  "files": ["main.js", "dist/azure-reporter/browser"],
+  "mac": {
+    "target": ["dmg"],
+    "category": "public.app-category.utilities"
+  },
+  "win": {
+    "target": "nsis"
+  },
+  "linux": {
+    "target": "AppImage",
+    "category": "Utility"
+  }
+}

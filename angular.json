@@ -49,7 +49,8 @@
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles/"]
-            }
+            },
+            "allowedCommonJsDependencies": ["rgbcolor", "core-js", "dompurify", "html2canvas", "jspdf-autotable", "raf"]
           },
           "configurations": {
             "production": {
@@ -57,7 +58,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "1.2mb"
                 },
                 {
                   "type": "anyComponentStyle",

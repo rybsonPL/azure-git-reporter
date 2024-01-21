@@ -1,6 +1,11 @@
 {
   "name": "azure-git-reporter",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": {
+    "email": "pl.rybson@gmail.com",
+    "name": "rybson"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +14,13 @@
     "test": "ng test --no-watch",
     "lint": "ng lint",
     "lint:style": "npx stylelint '**/*.scss'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "electron": "ng build --configuration production && electron .",
+    "prerelease": "npm run build -- -c production",
+    "release:mac": "electron-builder --mac --publish=never",
+    "release:win": "electron-builder --win --publish=never",
+    "release:linux": "electron-builder --linux --publish=never",
+    "release:portable": "electron-builder --win portable --publish=never"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +53,8 @@
     "@types/jasmine": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
+    "electron": "^28.1.4",
+    "electron-builder": "^24.9.1",
     "eslint": "^8.56.0",
     "husky": "^8.0.3",
     "jasmine-core": "^5.1.1",
