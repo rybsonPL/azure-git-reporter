@@ -17,9 +17,9 @@ export function handleErrorsInterceptor(
     timeout(10000),
     catchError((error: HttpErrorResponse) => {
       if (error.status === 0) {
-        messageService.add({ summary: 'Connection lost', detail: 'Try again', severity: 'error' });
+        messageService.add({ summary: 'Unknown error', detail: 'Try again', severity: 'error' });
 
-        return throwError(() => new Error('Connection lost'));
+        return throwError(() => new Error('Unknown error'));
       }
 
       if (error.status >= 400 && error.status < 500) {
