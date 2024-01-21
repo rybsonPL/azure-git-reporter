@@ -5,11 +5,14 @@
   "directories": {
     "app": ".",
     "output": "releases",
-    "buildResources": "build-res"
+    "buildResources": "build-resources"
   },
-  "files": ["main.js", "dist/azure-reporter/browser"],
+  "files": ["main.js", "dist/azure-git-reporter/browser"],
   "mac": {
-    "target": ["dmg"],
+    "target": {
+      "target": "dmg",
+      "arch": ["universal"]
+    },
     "category": "public.app-category.utilities"
   },
   "win": {

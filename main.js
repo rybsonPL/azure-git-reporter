@@ -5,11 +5,11 @@ const path = require('path');
 function onReady() {
   win = new BrowserWindow({
     width: 900,
-    height: 800,
+    height: 860,
     minWidth: 375,
     minHeight: 500,
     maxWidth: 900,
-    maxHeight: 800,
+    maxHeight: 860,
     maximizable: false,
   });
   win.loadURL(

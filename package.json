@@ -15,12 +15,12 @@
     "lint": "ng lint",
     "lint:style": "npx stylelint '**/*.scss'",
     "prepare": "husky install",
-    "electron": "ng build --configuration production && electron .",
     "prerelease": "npm run build -- -c production",
-    "release:mac": "electron-builder --mac --publish=never",
-    "release:win": "electron-builder --win --publish=never",
-    "release:linux": "electron-builder --linux --publish=never",
-    "release:portable": "electron-builder --win portable --publish=never"
+    "electron": "npm run build -- -c production && electron .",
+    "release:mac": "npm run prerelease && electron-builder --mac --publish=never",
+    "release:win": "npm run prerelease && electron-builder --win --publish=never",
+    "release:linux": "npm run prerelease && electron-builder --linux --publish=never",
+    "release:portable": "npm run prerelease && electron-builder --win portable --publish=never"
   },
   "private": true,
   "dependencies": {
